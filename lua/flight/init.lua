@@ -18,11 +18,6 @@ function M.setup(options)
     -- create highlight group
     vim.api.nvim_set_hl(0, "FlightTargets", { underline = true })
     -- create mappings
-    if config.options.numbered == 9 then
-        vim.keymap.set("n", "<leader><leader><leader><leader>a", function()
-            print "Hello World from flight.nvim"
-        end)
-    end
 end
 
 return M
