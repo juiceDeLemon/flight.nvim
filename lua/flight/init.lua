@@ -26,16 +26,13 @@ M.default_config = {
     numbered = 9, -- results to be numbered (max 9 for now)
 }
 
----@type Options
 M.config = {}
 
----@param u_options? Options
 function M.load_options(u_options)
     M.config =
         vim.tbl_deep_extend("force", {}, M.default_config, u_options or {})
 end
 
----@param u_options? Options
 function M.setup(u_options)
     -- load options
     M.load_options(u_options)
