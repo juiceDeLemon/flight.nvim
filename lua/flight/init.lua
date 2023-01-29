@@ -1,11 +1,17 @@
 --[[
-NOTE: flow of execution
- 0. create test mappings
- 1. find the characters
- 2. highlight the characters
- 3. change the characters to numbers
- 4. wait for user to enter the numebr
- 5. move the cursor to the position
+ NOTE:
+ flow of execution
+     0. create config, highlights, mappings
+     1. find the characters
+     2. highlight the characters
+     3. change the characters to numbers
+     4. wait for user to enter the numebr
+     5. move the cursor to the position
+ plugin behaviour:
+     1. {f/F/t/T}{char} -> got to {default char} pos
+     2. display numbers (2 to 9) (few secs)
+     3. if {}{char}{num} then repeate from 2.
+     4. :checkhealth to check conflict of highlight group name at least 0.7
 ]]
 
 local M = {}
@@ -32,6 +38,9 @@ function M.map(mode, key, rhs, opts)
     vim.api.nvim_set_keymap(mode, key, rhs, opts)
 end
 
+-----------
+-- SETUP --
+-----------
 function M.setup(u_options)
     -- load options
     config.load_config(u_options)
