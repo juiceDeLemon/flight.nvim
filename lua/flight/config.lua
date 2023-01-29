@@ -15,6 +15,7 @@ M.default = {
     -- empty string "" will disable the binding
     highlighted = 15, -- resuts to be highlighted
     numbered = 9, -- results to be numbered (max 9 for now)
+    clear_highlight = 10000, -- remove the number and highlight after how many ms
 }
 
 M.result = {}
