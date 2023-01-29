@@ -10,32 +10,13 @@ NOTE: flow of execution
 
 local M = {}
 
-M.default_config = {
-    mappings = {
-        f = "f",
-        F = "F",
-        t = "t",
-        T = "T",
-        [";"] = ";",
-        [","] = ",",
-    },
-    -- the key is the native bindings; the value is the new bindings of the new function
-    -- if they are the same, it will override the native bindings
-    -- you can keep the native bindings if you set the value to other keymaps
-    -- empty string "" will disable the binding
-    highlighted = 15, -- resuts to be highlighted
-    numbered = 9, -- results to be numbered (max 9 for now)
-}
+local config = require "flight.config"
 
-M.config = {}
-
-function M.load_options(u_options)
-    M.config = vim.tbl_deep_extend("force", {}, M.default_config, u_options or {})
-end
-
+--------------
+-- MAPPINGS --
+--------------
 function M.load_mappings()
-    local config = M.config
-    M.map("n", config.mappings.f, "<cmd>lua print 'juiceDeLemon'<cr>", { desc = "Foward" })
+    M.map("n", config.default.mappings.f, "<cmd>lua print 'juiceDeLemon'<cr>", { desc = "Foward" })
 end
 
 function M.map(mode, key, rhs, opts)
@@ -53,7 +34,7 @@ end
 
 function M.setup(u_options)
     -- load options
-    M.load_options(u_options)
+    config.load_config(u_options)
 
     -- create highlight groups
     vim.api.nvim_set_hl(0, "FlightUnnumberedTargets", { fg = "red", underline = true })
